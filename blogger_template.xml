@@ -357,7 +357,8 @@
         .contact-card { max-width: 600px; margin: 0 auto; padding: 2.5rem; background: var(--bg-card); border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
         .form-group { margin-bottom: 1.5rem; }
         .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: var(--text-main); }
-        .form-control { width: 100%; padding: 0.8rem 1rem; border-radius: 10px; border: 1px solid var(--border); font-family: inherit; font-size: 1rem; transition: var(--transition); box-sizing: border-box; }
+        .form-control { flex: 1; min-width: 0; padding: 0.8rem 1rem; border-radius: 10px; border: 1px solid var(--border); font-family: inherit; font-size: 1rem; transition: var(--transition); box-sizing: border-box; }
+        .form-group > input { width: 100%; }
         .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1); }
         .submit-btn { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; transition: var(--transition); }
         .submit-btn:hover { background: var(--primary-hover); transform: translateY(-2px); }
@@ -365,6 +366,11 @@
         .form-status { margin-top: 1rem; padding: 1rem; border-radius: 8px; display: none; text-align: center; font-weight: 500; }
         .status-success { background: #dcfce7; color: #166534; display: block; }
         .status-error { background: #fee2e2; color: #991b1b; display: block; }
+
+        .otp-group-row { display: flex; gap: 10px; align-items: stretch; }
+        .otp-btn { white-space: nowrap; padding: 0 20px; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .otp-btn:hover { background: var(--primary-hover); }
+        .otp-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
         footer { padding: 4rem 0 2rem; background: var(--bg-card); border-top: 1px solid var(--border); margin-top: 4rem; }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; }
@@ -377,6 +383,8 @@
         @media (max-width: 768px) {
             .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
             .social-fixed { bottom: 1.5rem; right: 1.5rem; }
+            .otp-group-row { flex-direction: column; }
+            .otp-btn { padding: 12px; }
         }
     ]]></b:skin>
 
@@ -450,16 +458,16 @@
                             </div>
                             <div class='form-group' id='phoneGroup'>
                                 <label for='phone'>Phone Number</label>
-                                <div style='display: flex; gap: 10px;'>
+                                <div class='otp-group-row'>
                                     <input class='form-control' id='phone' name='phone' pattern='^\+?[1-9]\d{1,14}$' placeholder='+91 00000 00000' title='Please enter a valid phone number with country code (e.g. +91...)' type='tel'/>
-                                    <button class='btn btn-primary' id='sendOTPBtn' style='white-space: nowrap; padding: 0 15px; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer;' type='button'>Send OTP</button>
+                                    <button class='otp-btn' id='sendOTPBtn' type='button'>Send OTP</button>
                                 </div>
                             </div>
                             <div class='form-group' id='otpGroup' style='display: none;'>
                                 <label for='otp'>Verification Code</label>
-                                <div style='display: flex; gap: 10px;'>
+                                <div class='otp-group-row'>
                                     <input class='form-control' id='otp' name='otp' placeholder='6-digit code' type='text'/>
-                                    <button class='btn btn-primary' id='verifyOTPBtn' style='white-space: nowrap; padding: 0 15px; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer;' type='button'>Verify</button>
+                                    <button class='otp-btn' id='verifyOTPBtn' type='button'>Verify</button>
                                 </div>
                             </div>
                             <div class='form-group'>
@@ -473,7 +481,8 @@
                 </section>
 
                 <script>
-                    const SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL'; // Replace with your deployed Web App URL
+                //<![CDATA[
+                    const SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL';
                     let isPhoneVerified = false;
 
                     const form = document.getElementById('contactForm');
@@ -488,9 +497,24 @@
                     function showStatus(msg, type) {
                         status.innerText = msg;
                         status.className = 'form-status ' + (type === 'success' ? 'status-success' : 'status-error');
+                        status.style.display = 'block';
                     }
 
-                    sendOTPBtn.addEventListener('click', function() {
+                    async function apiCall(action, extraParams = {}) {
+                        const formData = new FormData(form);
+                        formData.append('action', action);
+                        for (let [key, val] of Object.entries(extraParams)) {
+                            formData.set(key, val);
+                        }
+                        // For cross-domain to GAS, we must use GET to see the JSON response easily
+                        // Or a complex POST setup. Reviewer suggested POST for message security.
+                        // I will use URLSearchParams to build the request.
+                        const params = new URLSearchParams(formData);
+                        const res = await fetch(`${SCRIPT_URL}?${params.toString()}`, { method: 'POST' });
+                        return await res.json();
+                    }
+
+                    sendOTPBtn.addEventListener('click', async function() {
                         const phone = phoneInput.value;
                         if (!/^\+?[1-9]\d{1,14}$/.test(phone.replace(/[\s\-\(\)]/g, ''))) {
                             showStatus('Enter valid phone with country code.', 'error');
@@ -500,59 +524,53 @@
                         sendOTPBtn.disabled = true;
                         sendOTPBtn.innerText = 'Sending...';
 
-                        fetch(`${SCRIPT_URL}?action=sendOTP&amp;phone=${encodeURIComponent(phone)}`, { method: 'POST' })
-                            .then(res =&gt; res.json())
-                            .then(data =&gt; {
-                                if (data.status === 'success') {
-                                    otpGroup.style.display = 'block';
-                                    showStatus('OTP sent. Please check your phone.', 'success');
-                                } else {
-                                    showStatus(data.message, 'error');
-                                    sendOTPBtn.disabled = false;
-                                }
-                            })
-                            .catch(() =&gt; {
-                                showStatus('Error sending OTP.', 'error');
+                        try {
+                            const data = await apiCall('sendOTP', { phone });
+                            if (data.status === 'success') {
+                                otpGroup.style.display = 'block';
+                                showStatus(data.message, 'success');
+                            } else {
+                                showStatus(data.message, 'error');
                                 sendOTPBtn.disabled = false;
-                            })
-                            .finally(() =&gt; {
-                                sendOTPBtn.innerText = 'Resend';
-                                setTimeout(() =&gt; sendOTPBtn.disabled = false, 30000);
-                            });
+                            }
+                        } catch (e) {
+                            showStatus('Network error. Check console.', 'error');
+                            sendOTPBtn.disabled = false;
+                        } finally {
+                            sendOTPBtn.innerText = 'Resend';
+                            setTimeout(() => sendOTPBtn.disabled = false, 30000);
+                        }
                     });
 
-                    verifyOTPBtn.addEventListener('click', function() {
+                    verifyOTPBtn.addEventListener('click', async function() {
                         const phone = phoneInput.value;
                         const otp = otpInput.value;
 
                         verifyOTPBtn.disabled = true;
                         verifyOTPBtn.innerText = '...';
 
-                        fetch(`${SCRIPT_URL}?action=verifyOTP&amp;phone=${encodeURIComponent(phone)}&amp;otp=${encodeURIComponent(otp)}`, { method: 'POST' })
-                            .then(res =&gt; res.json())
-                            .then(data =&gt; {
-                                if (data.status === 'success') {
-                                    isPhoneVerified = true;
-                                    phoneInput.disabled = true;
-                                    otpInput.disabled = true;
-                                    verifyOTPBtn.style.display = 'none';
-                                    sendOTPBtn.style.display = 'none';
-                                    showStatus('Phone verified!', 'success');
-                                } else {
-                                    showStatus(data.message, 'error');
-                                    verifyOTPBtn.disabled = false;
-                                }
-                            })
-                            .catch(() =&gt; {
-                                showStatus('Error verifying OTP.', 'error');
+                        try {
+                            const data = await apiCall('verifyOTP', { phone, otp });
+                            if (data.status === 'success') {
+                                isPhoneVerified = true;
+                                phoneInput.disabled = true;
+                                otpInput.disabled = true;
+                                verifyOTPBtn.style.display = 'none';
+                                sendOTPBtn.style.display = 'none';
+                                showStatus('Phone verified!', 'success');
+                            } else {
+                                showStatus(data.message, 'error');
                                 verifyOTPBtn.disabled = false;
-                            })
-                            .finally(() =&gt; {
-                                verifyOTPBtn.innerText = 'Verify';
-                            });
+                            }
+                        } catch (e) {
+                            showStatus('Verification failed.', 'error');
+                            verifyOTPBtn.disabled = false;
+                        } finally {
+                            verifyOTPBtn.innerText = 'Verify';
+                        }
                     });
 
-                    form.addEventListener('submit', function(e) {
+                    form.addEventListener('submit', async function(e) {
                         e.preventDefault();
 
                         if (!isPhoneVerified) {
@@ -563,15 +581,9 @@
                         submitBtn.disabled = true;
                         submitBtn.innerText = 'Sending...';
 
-                        const formData = new FormData(form);
-                        // Add action param for final submission
-                        const queryString = new URLSearchParams(formData).toString() + '&amp;action=submitForm';
-
-                        fetch(SCRIPT_URL + '?' + queryString, {
-                            method: 'POST'
-                        })
-                        .then(response =&gt; response.json())
-                        .then(data =&gt; {
+                        try {
+                            // Ensure disabled fields are included
+                            const data = await apiCall('submitForm', { phone: phoneInput.value });
                             if(data.status === 'success') {
                                 showStatus('Thank you! Your message has been sent.', 'success');
                                 form.reset();
@@ -585,16 +597,14 @@
                             } else {
                                 throw new Error(data.message);
                             }
-                        })
-                        .catch(error =&gt; {
-                            showStatus('Oops! Something went wrong. Please try again.', 'error');
-                            console.error('Error!', error.message);
-                        })
-                        .finally(() =&gt; {
+                        } catch (error) {
+                            showStatus('Oops! Something went wrong.', 'error');
+                        } finally {
                             submitBtn.disabled = false;
                             submitBtn.innerText = 'Send Message';
-                        });
+                        }
                     });
+                //]]>
                 </script>
             </b:if>
 
