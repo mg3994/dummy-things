@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsversion='3' b:responsive='true' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale'
+    xmlns='http://www.w3.org/1999/xhtml'
+    xmlns:b='http://www.google.com/2005/gml/b'
+    xmlns:data='http://www.google.com/2005/gml/data'
+    xmlns:expr='http://www.google.com/2005/gml/expr'>
+   <head>
+   <!-- For EU regions -->
+      <script>
+         cookieOptions = {
+          close: &quot;Got it!&quot;,
+          learn: &quot;Privacy Policy&quot;,
+          link: &quot;<data:blog.canonicalHomepageUrl/>p/privacy-policy.html&quot;
+         };
+      </script>
+      <!-- viewport Related Meta tags -->
+      <meta content='width=device-width, initial-scale=1' name='viewport'/>
+      <!-- All Blogger Meta tags Auto added by blogger platform -->
+      <b:include data='blog' name='all-head-content'/>
+      <!-- Open Graph Meta tags  -->
+      <meta content='website' property='og:type'/>
+      <meta content='IN-HR' name='geo.region'/>
+      <meta content='+918607573994' name='contact.phone'/>
+      <!-- All Links Related -->
+      <link expr:href='data:blog.homepageUrl.canonical' expr:title='data:messages.home' rel='home'/>
+      <link expr:href='data:blog.homepageUrl.canonical path "search"' expr:title='data:messages.search' rel='search'/>
+      <!-- content Rating -->
+      <b:if cond='!data:blog.adultContent'>
+         <meta content='general' name='rating'/>
+      </b:if>
+      <b:if cond='data:blog.adultContent'>
+        <meta content='adult' name='rating'/>
+      </b:if>
+        <!-- All Canonical links -->
+      <b:tag cond='!data:blog.isMobileRequest and data:view.url ==  data:view.url.canonical' expr:href='data:view.url params {m: 1}' media='only screen and (max-width: 640px)' name='link' rel='alternate'/>
+
+      <b:tag cond='data:view.isMultipleItems and data:widgets.Blog.first.posts[0].featuredImage' expr:href='data:widgets.Blog.first.posts[0].featuredImage resizeImage 1600' name='link' rel='image_src'/>
+      <b:tag cond='data:view.isSingleItem and data:view.featuredImage' expr:href='data:view.featuredImage resizeImage 1600' name='link' rel='image_src'/>
+      <b:if cond='data:blog.analyticsAccountNumber'>
+         <!-- Google Analytics TODO -->
+         <b:include data='blog' name='google-analytics'/>
+      </b:if>
+
+
+
+      <!-- JSON-LD Structured Data -->
+      <b:if cond='data:view.isHomepage'>
+         <script type='application/ld+json'>{&quot;@context&quot;:&quot;http://schema.org&quot;,&quot;@type&quot;:&quot;WebSite&quot;,&quot;name&quot;:&quot;<data:blog.title/>&quot;,&quot;description&quot;: &quot;<data:view.description.escaped/>&quot;,&quot;url&quot;:&quot;<data:blog.canonicalHomepageUrl/>&quot;,&quot;potentialAction&quot;:{&quot;@type&quot;:&quot;SearchAction&quot;,&quot;target&quot;:&quot;<data:blog.canonicalHomepageUrl/>search?q={search_term_string}&quot;,&quot;query-input&quot;:&quot;required name=search_term_string&quot;}}</script>
+      </b:if>
+      <script type='application/ld+json'>
+         {
+         &quot;@context&quot;: &quot;http://schema.org&quot;,
+         &quot;@type&quot;: &quot;BreadcrumbList&quot;,
+         &quot;@id&quot;: &quot;<data:blog.canonicalHomepageUrl/>&quot;,
+         &quot;name&quot;: &quot;<data:blog.title/>&quot;,
+         &quot;itemListElement&quot;: [{
+            &quot;@type&quot;: &quot;ListItem&quot;,
+            &quot;position&quot;: 1,
+            &quot;name&quot;: &quot;Home&quot;,
+            &quot;item&quot;: &quot;<data:blog.canonicalHomepageUrl/>&quot;
+         },
+         {
+            &quot;@type&quot;: &quot;ListItem&quot;,
+            &quot;position&quot;: 2,
+            &quot;name&quot;: &quot;About&quot;,
+            &quot;item&quot;: &quot;<data:blog.canonicalHomepageUrl/>#about&quot;
+         },
+         {
+            &quot;@type&quot;: &quot;ListItem&quot;,
+            &quot;position&quot;: 3,
+            &quot;name&quot;: &quot;Contact Us&quot;,
+            &quot;item&quot;: &quot;<data:blog.canonicalHomepageUrl/>#contact&quot;
+         }
+
+         ]
+      }
+    </script>
+
+    <script type='application/ld+json'>
+    {
+      &quot;@context&quot;: &quot;https://schema.org&quot;,
+      &quot;@type&quot;: &quot;LocalBusiness&quot;,
+      &quot;name&quot;: &quot;<data:blog.title/>&quot;,
+      &quot;url&quot;: &quot;<data:blog.canonicalHomepageUrl/>&quot;,
+      &quot;logo&quot;: &quot;<data:blog.blogspotFaviconUrl/>&quot;,
+      &quot;image&quot;: &quot;<data:blog.blogspotFaviconUrl/>&quot;,
+      &quot;sameAs&quot;: [
+        &quot;https://www.facebook.com/profile.php?id=100082961891641&quot;,
+        &quot;https://www.youtube.com/@Antinna&quot;,
+        &quot;https://www.instagram.com/antinna.yt&quot;,
+        &quot;https://github.com/antinna&quot;,
+        &quot;https://play.google.com/store/apps/dev?id=7417258411166270372&quot;
+      ],
+      &quot;contactPoint&quot;: {
+        &quot;@type&quot;: &quot;ContactPoint&quot;,
+        &quot;telephone&quot;: &quot;+918607573994&quot;,
+        &quot;contactType&quot;: &quot;customer service&quot;,
+        &quot;email&quot;: &quot;contact@antinna.in&quot;,
+        &quot;availableLanguage&quot;: [&quot;en&quot;, &quot;hi&quot;]
+      }
+    }
+    </script>
+    <script type='application/ld+json'>
+    {
+      &quot;@context&quot;: &quot;https://schema.org&quot;,
+      &quot;@type&quot;: &quot;ProfessionalService&quot;,
+      &quot;name&quot;: &quot;<data:blog.title/>&quot;,
+      &quot;image&quot;: &quot;<data:blog.blogspotFaviconUrl/>&quot;,
+      &quot;@id&quot;: &quot;<data:blog.canonicalHomepageUrl/>&quot;,
+      &quot;url&quot;: &quot;<data:blog.canonicalHomepageUrl/>&quot;,
+      &quot;telephone&quot;: &quot;+919813954763&quot;,
+      &quot;priceRange&quot;: &quot;$$&quot;,
+      &quot;address&quot;: {
+      &quot;@type&quot;: &quot;PostalAddress&quot;,
+      &quot;streetAddress&quot;: &quot;H.No. 42, Village:- Todi&quot;,
+      &quot;addressLocality&quot;: &quot;Charkhi Dadri&quot;,
+      &quot;addressRegion&quot;: &quot;Haryana&quot;,
+      &quot;postalCode&quot;: &quot;127310&quot;,
+      &quot;addressCountry&quot;: &quot;IN&quot;
+    },
+
+
+
+      &quot;geo&quot;: {
+        &quot;@type&quot;: &quot;GeoCoordinates&quot;,
+        &quot;latitude&quot;: 28.527867,
+        &quot;longitude&quot;: 76.083600
+      },
+      &quot;openingHoursSpecification&quot;: {
+        &quot;@type&quot;: &quot;OpeningHoursSpecification&quot;,
+        &quot;dayOfWeek&quot;: [
+          &quot;Monday&quot;,
+          &quot;Tuesday&quot;,
+          &quot;Wednesday&quot;,
+          &quot;Thursday&quot;,
+          &quot;Friday&quot;,
+          &quot;Saturday&quot;,
+          &quot;Sunday&quot;
+        ],
+        &quot;opens&quot;: &quot;00:00&quot;,
+        &quot;closes&quot;: &quot;23:59&quot;
+      },
+      &quot;sameAs&quot;: [
+        &quot;https://www.facebook.com/profile.php?id=100082961891641&quot;,
+        &quot;https://www.instagram.com/antinna.yt/&quot;,
+        &quot;https://youtube.com/antinna&quot;,
+        &quot;https://github.com/antinna&quot;,
+        &quot;https://play.google.com/store/apps/dev?id=7417258411166270372&quot;,
+        &quot;<data:blog.canonicalHomepageUrl/>&quot;
+      ]
+    }
+    </script>
+
+    <script type='application/ld+json'>
+    {
+      &quot;@context&quot;: &quot;https://schema.org&quot;,
+      &quot;@type&quot;: &quot;Project&quot;,
+      &quot;name&quot;: &quot;<data:blog.title/>&quot;,
+      &quot;url&quot;: &quot;<data:blog.canonicalHomepageUrl/>&quot;,
+      &quot;logo&quot;: &quot;<data:blog.blogspotFaviconUrl/>&quot;,
+      &quot;contactPoint&quot;: [
+        {
+          &quot;@type&quot;: &quot;ContactPoint&quot;,
+          &quot;telephone&quot;: &quot;+918607573994&quot;,
+          &quot;contactType&quot;: &quot;Technical Support&quot;,
+          &quot;areaServed&quot;: [&quot;US&quot;,&quot;GB&quot;,&quot;CA&quot;,&quot;AF&quot;,&quot;155&quot;,&quot;039&quot;,&quot;154&quot;,&quot;151&quot;,&quot;150&quot;,&quot;145&quot;,&quot;034&quot;,&quot;035&quot;,&quot;030&quot;,&quot;143&quot;,&quot;142&quot;,&quot;419&quot;,&quot;015&quot;,&quot;002&quot;,&quot;ZM&quot;,&quot;YE&quot;,&quot;EH&quot;,&quot;ZW&quot;,&quot;WF&quot;,&quot;VN&quot;,&quot;VE&quot;,&quot;AX&quot;,&quot;AL&quot;,&quot;DZ&quot;,&quot;AS&quot;,&quot;AD&quot;,&quot;AO&quot;,&quot;AQ&quot;,&quot;AI&quot;,&quot;AG&quot;,&quot;AW&quot;,&quot;AM&quot;,&quot;AR&quot;,&quot;AT&quot;,&quot;AU&quot;,&quot;AZ&quot;,&quot;BS&quot;,&quot;BH&quot;,&quot;BD&quot;,&quot;BB&quot;,&quot;BY&quot;,&quot;BE&quot;,&quot;BZ&quot;,&quot;BJ&quot;,&quot;BM&quot;,&quot;BT&quot;,&quot;BO&quot;,&quot;BQ&quot;,&quot;BA&quot;,&quot;BW&quot;,&quot;VA&quot;,&quot;VU&quot;,&quot;UZ&quot;,&quot;UY&quot;,&quot;UM&quot;,&quot;AE&quot;,&quot;UA&quot;,&quot;TV&quot;,&quot;VI&quot;,&quot;UG&quot;,&quot;TC&quot;,&quot;TT&quot;,&quot;TN&quot;,&quot;TR&quot;,&quot;TM&quot;,&quot;TG&quot;,&quot;TK&quot;,&quot;TO&quot;,&quot;TH&quot;,&quot;TZ&quot;,&quot;TJ&quot;,&quot;TW&quot;,&quot;CH&quot;,&quot;SY&quot;,&quot;SE&quot;,&quot;BR&quot;,&quot;BV&quot;,&quot;IO&quot;,&quot;VG&quot;,&quot;BN&quot;,&quot;BG&quot;,&quot;BF&quot;,&quot;BI&quot;,&quot;KH&quot;,&quot;CM&quot;,&quot;CV&quot;,&quot;KY&quot;,&quot;CF&quot;,&quot;TD&quot;,&quot;CL&quot;,&quot;CX&quot;,&quot;CN&quot;,&quot;CC&quot;,&quot;CO&quot;,&quot;KM&quot;,&quot;CK&quot;,&quot;HR&quot;,&quot;CR&quot;,&quot;CU&quot;,&quot;CW&quot;,&quot;CY&quot;,&quot;CZ&quot;,&quot;CD&quot;,&quot;DK&quot;,&quot;DJ&quot;,&quot;DM&quot;,&quot;DO&quot;,&quot;TL&quot;,&quot;EG&quot;,&quot;SV&quot;,&quot;EC&quot;,&quot;GQ&quot;,&quot;EE&quot;,&quot;ER&quot;,&quot;ET&quot;,&quot;FK&quot;,&quot;FO&quot;,&quot;FJ&quot;,&quot;FI&quot;,&quot;GF&quot;,&quot;FR&quot;,&quot;PF&quot;,&quot;TF&quot;,&quot;GA&quot;,&quot;GM&quot;,&quot;SZ&quot;,&quot;SR&quot;,&quot;SJ&quot;,&quot;SD&quot;,&quot;SS&quot;,&quot;ES&quot;,&quot;LK&quot;,&quot;KR&quot;,&quot;GS&quot;,&quot;ZA&quot;,&quot;SO&quot;,&quot;SB&quot;,&quot;SI&quot;,&quot;SK&quot;,&quot;SG&quot;,&quot;SX&quot;,&quot;SL&quot;,&quot;SC&quot;,&quot;SN&quot;,&quot;SA&quot;,&quot;RS&quot;,&quot;PM&quot;,&quot;VC&quot;,&quot;SM&quot;,&quot;WS&quot;,&quot;ST&quot;,&quot;GE&quot;,&quot;DE&quot;,&quot;GH&quot;,&quot;GI&quot;,&quot;GR&quot;,&quot;GL&quot;,&quot;GD&quot;,&quot;GP&quot;,&quot;GT&quot;,&quot;MF&quot;,&quot;LC&quot;,&quot;BL&quot;,&quot;SH&quot;,&quot;KN&quot;,&quot;RW&quot;,&quot;RO&quot;,&quot;RU&quot;,&quot;RE&quot;,&quot;CG&quot;,&quot;PT&quot;,&quot;PL&quot;,&quot;PR&quot;,&quot;QA&quot;,&quot;PH&quot;,&quot;PN&quot;,&quot;GN&quot;,&quot;GG&quot;,&quot;GU&quot;,&quot;GW&quot;,&quot;GY&quot;,&quot;HT&quot;,&quot;HM&quot;,&quot;HN&quot;,&quot;HK&quot;,&quot;HU&quot;,&quot;IS&quot;,&quot;ID&quot;,&quot;IN&quot;,&quot;IR&quot;,&quot;IQ&quot;,&quot;IE&quot;,&quot;IM&quot;,&quot;IT&quot;,&quot;IL&quot;,&quot;JP&quot;,&quot;JO&quot;,&quot;JM&quot;,&quot;JE&quot;,&quot;CI&quot;,&quot;KW&quot;,&quot;KG&quot;,&quot;LA&quot;,&quot;XK&quot;,&quot;KI&quot;,&quot;KE&quot;,&quot;KZ&quot;,&quot;LV&quot;,&quot;LB&quot;,&quot;LS&quot;,&quot;LY&quot;,&quot;LR&quot;,&quot;LT&quot;,&quot;LU&quot;,&quot;LI&quot;,&quot;PY&quot;,&quot;PE&quot;,&quot;PG&quot;,&quot;PA&quot;,&quot;PW&quot;,&quot;PS&quot;,&quot;PK&quot;,&quot;NO&quot;,&quot;OM&quot;,&quot;MP&quot;,&quot;KP&quot;,&quot;NI&quot;,&quot;NE&quot;,&quot;NG&quot;,&quot;NU&quot;,&quot;NF&quot;,&quot;NZ&quot;,&quot;NA&quot;,&quot;NP&quot;,&quot;NL&quot;,&quot;NR&quot;,&quot;NC&quot;,&quot;MM&quot;,&quot;MZ&quot;,&quot;MS&quot;,&quot;MN&quot;,&quot;ME&quot;,&quot;MA&quot;,&quot;MD&quot;,&quot;MC&quot;,&quot;FM&quot;,&quot;MX&quot;,&quot;MR&quot;,&quot;MU&quot;,&quot;YT&quot;,&quot;MQ&quot;,&quot;MH&quot;,&quot;MV&quot;,&quot;ML&quot;,&quot;MT&quot;,&quot;MW&quot;,&quot;MG&quot;,&quot;MY&quot;,&quot;MO&quot;,&quot;MK&quot;],
+          &quot;availableLanguage&quot;: [&quot;en&quot;,&quot;Gujarati&quot;,&quot;Hindi&quot;,&quot;Tamil&quot;,&quot;Telugu&quot;,&quot;Urdu&quot;,&quot;Panjabi&quot;]
+        },
+        {
+          &quot;@type&quot;: &quot;ContactPoint&quot;,
+          &quot;telephone&quot;: &quot;+918607573994&quot;,
+          &quot;contactType&quot;: &quot;customer service&quot;,
+          &quot;areaServed&quot;: [&quot;US&quot;,&quot;GB&quot;,&quot;CA&quot;,&quot;AF&quot;,&quot;155&quot;,&quot;039&quot;,&quot;154&quot;,&quot;151&quot;,&quot;150&quot;,&quot;145&quot;,&quot;034&quot;,&quot;035&quot;,&quot;030&quot;,&quot;143&quot;,&quot;142&quot;,&quot;419&quot;,&quot;015&quot;,&quot;002&quot;,&quot;ZM&quot;,&quot;YE&quot;,&quot;EH&quot;,&quot;ZW&quot;,&quot;WF&quot;,&quot;VN&quot;,&quot;VE&quot;,&quot;AX&quot;,&quot;AL&quot;,&quot;DZ&quot;,&quot;AS&quot;,&quot;AD&quot;,&quot;AO&quot;,&quot;AQ&quot;,&quot;AI&quot;,&quot;AG&quot;,&quot;AW&quot;,&quot;AM&quot;,&quot;AR&quot;,&quot;AT&quot;,&quot;AU&quot;,&quot;AZ&quot;,&quot;BS&quot;,&quot;BH&quot;,&quot;BD&quot;,&quot;BB&quot;,&quot;BY&quot;,&quot;BE&quot;,&quot;BZ&quot;,&quot;BJ&quot;,&quot;BM&quot;,&quot;BT&quot;,&quot;BO&quot;,&quot;BQ&quot;,&quot;BA&quot;,&quot;BW&quot;,&quot;VA&quot;,&quot;VU&quot;,&quot;UZ&quot;,&quot;UY&quot;,&quot;UM&quot;,&quot;AE&quot;,&quot;UA&quot;,&quot;TV&quot;,&quot;VI&quot;,&quot;UG&quot;,&quot;TC&quot;,&quot;TT&quot;,&quot;TN&quot;,&quot;TR&quot;,&quot;TM&quot;,&quot;TG&quot;,&quot;TK&quot;,&quot;TO&quot;,&quot;TH&quot;,&quot;TZ&quot;,&quot;TJ&quot;,&quot;TW&quot;,&quot;CH&quot;,&quot;SY&quot;,&quot;SE&quot;,&quot;BR&quot;,&quot;BV&quot;,&quot;IO&quot;,&quot;VG&quot;,&quot;BN&quot;,&quot;BG&quot;,&quot;BF&quot;,&quot;BI&quot;,&quot;KH&quot;,&quot;CM&quot;,&quot;CV&quot;,&quot;KY&quot;,&quot;CF&quot;,&quot;TD&quot;,&quot;CL&quot;,&quot;CX&quot;,&quot;CN&quot;,&quot;CC&quot;,&quot;CO&quot;,&quot;KM&quot;,&quot;CK&quot;,&quot;HR&quot;,&quot;CR&quot;,&quot;CU&quot;,&quot;CW&quot;,&quot;CY&quot;,&quot;CZ&quot;,&quot;CD&quot;,&quot;DK&quot;,&quot;DJ&quot;,&quot;DM&quot;,&quot;DO&quot;,&quot;TL&quot;,&quot;EG&quot;,&quot;SV&quot;,&quot;EC&quot;,&quot;GQ&quot;,&quot;EE&quot;,&quot;ER&quot;,&quot;ET&quot;,&quot;FK&quot;,&quot;FO&quot;,&quot;FJ&quot;,&quot;FI&quot;,&quot;GF&quot;,&quot;FR&quot;,&quot;PF&quot;,&quot;TF&quot;,&quot;GA&quot;,&quot;GM&quot;,&quot;SZ&quot;,&quot;SR&quot;,&quot;SJ&quot;,&quot;SD&quot;,&quot;SS&quot;,&quot;ES&quot;,&quot;LK&quot;,&quot;KR&quot;,&quot;GS&quot;,&quot;ZA&quot;,&quot;SO&quot;,&quot;SB&quot;,&quot;SI&quot;,&quot;SK&quot;,&quot;SG&quot;,&quot;SX&quot;,&quot;SL&quot;,&quot;SC&quot;,&quot;SN&quot;,&quot;SA&quot;,&quot;RS&quot;,&quot;PM&quot;,&quot;VC&quot;,&quot;SM&quot;,&quot;WS&quot;,&quot;ST&quot;,&quot;GE&quot;,&quot;DE&quot;,&quot;GH&quot;,&quot;GI&quot;,&quot;GR&quot;,&quot;GL&quot;,&quot;GD&quot;,&quot;GP&quot;,&quot;GT&quot;,&quot;MF&quot;,&quot;LC&quot;,&quot;BL&quot;,&quot;SH&quot;,&quot;KN&quot;,&quot;RW&quot;,&quot;RO&quot;,&quot;RU&quot;,&quot;RE&quot;,&quot;CG&quot;,&quot;PT&quot;,&quot;PL&quot;,&quot;PR&quot;,&quot;QA&quot;,&quot;PH&quot;,&quot;PN&quot;,&quot;GN&quot;,&quot;GG&quot;,&quot;GU&quot;,&quot;GW&quot;,&quot;GY&quot;,&quot;HT&quot;,&quot;HM&quot;,&quot;HN&quot;,&quot;HK&quot;,&quot;HU&quot;,&quot;IS&quot;,&quot;ID&quot;,&quot;IN&quot;,&quot;IR&quot;,&quot;IQ&quot;,&quot;IE&quot;,&quot;IM&quot;,&quot;IT&quot;,&quot;IL&quot;,&quot;JP&quot;,&quot;JO&quot;,&quot;JM&quot;,&quot;JE&quot;,&quot;CI&quot;,&quot;KW&quot;,&quot;KG&quot;,&quot;LA&quot;,&quot;XK&quot;,&quot;KI&quot;,&quot;KE&quot;,&quot;KZ&quot;,&quot;LV&quot;,&quot;LB&quot;,&quot;LS&quot;,&quot;LY&quot;,&quot;LR&quot;,&quot;LT&quot;,&quot;LU&quot;,&quot;LI&quot;,&quot;PY&quot;,&quot;PE&quot;,&quot;PG&quot;,&quot;PA&quot;,&quot;PW&quot;,&quot;PS&quot;,&quot;PK&quot;,&quot;NO&quot;,&quot;OM&quot;,&quot;MP&quot;,&quot;KP&quot;,&quot;NI&quot;,&quot;NE&quot;,&quot;NG&quot;,&quot;NU&quot;,&quot;NF&quot;,&quot;NZ&quot;,&quot;NA&quot;,&quot;NP&quot;,&quot;NL&quot;,&quot;NR&quot;,&quot;NC&quot;,&quot;MM&quot;,&quot;MZ&quot;,&quot;MS&quot;,&quot;MN&quot;,&quot;ME&quot;,&quot;MA&quot;,&quot;MD&quot;,&quot;MC&quot;,&quot;FM&quot;,&quot;MX&quot;,&quot;MR&quot;,&quot;MU&quot;,&quot;YT&quot;,&quot;MQ&quot;,&quot;MH&quot;,&quot;MV&quot;,&quot;ML&quot;,&quot;MT&quot;,&quot;MW&quot;,&quot;MG&quot;,&quot;MY&quot;,&quot;MO&quot;,&quot;MK&quot;],
+          &quot;availableLanguage&quot;: [&quot;en&quot;,&quot;Gujarati&quot;,&quot;Hindi&quot;,&quot;Tamil&quot;,&quot;Telugu&quot;,&quot;Urdu&quot;,&quot;Panjabi&quot;]
+        }
+      ],
+      &quot;sameAs&quot;: [
+        &quot;https://www.facebook.com/profile.php?id=100082961891641&quot;,
+        &quot;https://www.instagram.com/antinna.yt/&quot;,
+        &quot;https://youtube.com/antinna&quot;,
+        &quot;https://github.com/antinna&quot;,
+        &quot;https://play.google.com/store/apps/dev?id=7417258411166270372&quot;,
+        &quot;<data:blog.canonicalHomepageUrl/>&quot;
+      ]
+    }
+    </script>
+
+
+<!-- Start -->
+
+    <title>
+      <data:view.title.escaped/>
+       <b:if cond='data:view.isArchive'>: <data:blog.pageName/>&#65288;<data:messages.archive/>&#65289;
+       <b:elseif cond='data:view.isLabelSearch'/>: <data:blog.pageName/>&#65288;<data:messages.labels/>&#65289;
+       <b:elseif cond='data:view.isSearch'/>: <data:messages.search/>
+       </b:if>
+    </title>
+
+    <meta expr:content='(data:view.isMultipleItems ? data:blog.pageTitle : data:view.title).escaped' name='subject'/>
+    <b:if cond='data:blog.metaDescription'>
+      <meta expr:content='data:blog.metaDescription' name='description'/>
+    </b:if>
+    <b:if cond='data:widgets'>
+      <b:comment>Chrome, Firefox OS and Opera</b:comment>
+      <meta expr:content='data:skin.vars.viewport_background_color' name='theme-color'/>
+      <b:comment>Windows Phone</b:comment>
+      <meta expr:content='data:skin.vars.viewport_background_color' name='msapplication-navbutton-color'/>
+    </b:if>
+    <!-- <b:if cond='data:blog.pageType in {&quot;index&quot;} and data:blog.pageName == &quot;&quot; and data:blog.homepageUrl != data:blog.url'> -->
+      <!--URL be:- /search?max-results=15 -->
+      <!-- <title>All Posts - <data:blog.title/></title> -->
+    <!-- </b:if> -->
+    <!-- <b:if cond='data:blog.homepageUrl == data:blog.url'> -->
+      <!-- <title> -->
+      <!-- / -->
+        <!-- <data:blog.pageTitle/> -->
+      <!-- </title> -->
+      <!-- <b:else/> -->
+      <!-- <b:if cond='data:blog.pageType in {&quot;item&quot;,&quot;static_page&quot;}'> -->
+        <!-- <title> -->
+        <!-- /p/... -->
+          <!-- <data:blog.pageName/> - <data:blog.title/> -->
+        <!-- </title> -->
+
+        <!-- <meta content='article' property='og:type'/> -->
+
+
+        <!-- <b:else/> -->
+        <!-- <b:if cond='data:view.isLabelSearch'> -->
+        <!--URL be:- /search/label/.... -->
+          <!-- <title>Posts Tagged: <data:blog.searchLabel/> - <data:blog.title/> -->
+          <!-- </title> -->
+          <!-- <b:else/> -->
+          <!-- <b:if cond='data:view.isSearch'> -->
+          <!--URL be:- /search?q= -->
+            <!-- <title>Search Results for: <data:blog.searchQuery/> - <data:blog.title/> -->
+            <!-- </title> -->
+            <!-- <b:else/> -->
+            <!-- <b:if cond='data:blog.pageType in {&quot;error_page&quot;}'> -->
+              <!-- <title>Page Not Found - <data:blog.title/> -->
+              <!-- </title> -->
+            <!-- </b:if> -->
+          <!-- </b:if> -->
+        <!-- </b:if> -->
+      <!-- </b:if> -->
+    <!-- </b:if> -->
+    <!-- <b:if cond='data:blog.postImageUrl'> -->
+        <!-- <meta expr:content='data:blog.postImageUrl' property='og:image'/> -->
+    <!-- <b:else/> -->
+    <!-- <b:if cond='data:blog.postImageThumbnailUrl'> -->
+        <!-- <meta expr:content='data:blog.postImageThumbnailUrl' property='og:image'/> -->
+    <!-- </b:if></b:if> -->
+    <!-- <b:if cond='data:blog.metaDescription != &quot;&quot;'> -->
+        <!-- <meta expr:content='data:blog.metaDescription' name='og:description'/> -->
+    <!-- </b:if> -->
+    <!-- <meta expr:content='data:blog.title' property='og:site_name'/> -->
+    <!-- <meta expr:content='data:blog.homepageUrl' name='twitter:domain'/> -->
+    <!-- <meta expr:content='data:blog.pageName' name='twitter:title'/> -->
+    <!-- <b:if cond='data:blog.postImageUrl'> -->
+      <!-- <meta content='summary_large_image' name='twitter:card'/> -->
+      <!-- <meta expr:content='data:blog.postImageUrl' name='twitter:image'/> -->
+    <!-- <b:else/> -->
+      <!-- <meta content='summary' name='twitter:card'/> -->
+      <!-- <b:if cond='data:blog.postImageThumbnailUrl'> -->
+        <!-- <meta expr:content='data:blog.postImageThumbnailUrl' name='twitter:image'/>  -->
+      <!-- </b:if> -->
+    <!-- </b:if> -->
+
+    <!-- <b:if cond='data:blog.metaDescription'> -->
+      <!-- <meta expr:content='data:blog.metaDescription' name='twitter:description'/> -->
+    <!-- </b:if>  -->
+
+<!-- End -->
+
+
+
+    <b:skin><![CDATA[
+
+    <Variable name="viewport_background_color"
+            description="Viewport Background Color"
+            type="color"
+            default="#ffffff"
+            value="#ffffff"/>
+
+
+    <Group description="Root Theme Color" selector=":root">
+      <Variable name="root.primary_color"
+        description="Primary Color"
+        type="color"
+        default="#16a34a"
+        value="#16a34a"/>
+      <Variable name="root.body_background_color"
+        description="Body Background"
+        type="color"
+        default="#ffffff"
+        value="#ffffff"/>
+
+    </Group>
+
+        :root {
+            --primary: $(root.primary_color);
+            --primary-hover: #15803d;
+            --bg-body: $(root.body_background_color);
+            --bg-card: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: var(--glass-bg); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-img { width: 30px; height: 30px; }
+        .logo-text { font-size: 1.4rem; font-weight: 800; color: var(--primary); }
+
+        /* Dynamic Content Area */
+        .main-content { padding: 100px 0 60px; min-height: 70vh; }
+        .post-body img { max-width: 100%; height: auto; border-radius: 8px; }
+        .error-404 { text-align: center; padding: 100px 20px; }
+        .error-404 h1 { font-size: 5rem; color: var(--primary); margin: 0; }
+
+        /* Hero only for Homepage */
+        .hero { padding: 8rem 0 4rem; text-align: center; background: radial-gradient(circle at top right, #f0fdf4, transparent); }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; margin-bottom: 1rem; color: #064e3b; }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 2rem; }
+
+        /* Social Widget */
+        .social-fixed { position: fixed; bottom: 2rem; right: 2rem; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; z-index: 999; }
+        .social-label { background: #1e293b; color: white; padding: 4px 12px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .social-icons { display: flex; gap: 8px; background: var(--glass-bg); padding: 8px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .social-icons a { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: var(--bg-body); color: var(--text-main); transition: var(--transition); }
+        .social-icons a:hover { background: var(--primary); color: white; transform: scale(1.1); }
+
+        /* Specialized hover for Colorful Icons to maintain their identity */
+        .social-icons a.colorful-icon:hover { background: #f1f5f9; color: initial; }
+
+        /* Contact Form Styles */
+        .contact-section { padding: 4rem 0; background: #fff; }
+        .contact-card { max-width: 600px; margin: 0 auto; padding: 2.5rem; background: var(--bg-card); border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: var(--text-main); }
+        .form-control { width: 100%; padding: 0.8rem 1rem; border-radius: 10px; border: 1px solid var(--border); font-family: inherit; font-size: 1rem; transition: var(--transition); box-sizing: border-box; }
+        .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1); }
+        .submit-btn { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; transition: var(--transition); }
+        .submit-btn:hover { background: var(--primary-hover); transform: translateY(-2px); }
+        .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+        .form-status { margin-top: 1rem; padding: 1rem; border-radius: 8px; display: none; text-align: center; font-weight: 500; }
+        .status-success { background: #dcfce7; color: #166534; display: block; }
+        .status-error { background: #fee2e2; color: #991b1b; display: block; }
+
+        footer { padding: 4rem 0 2rem; background: var(--bg-card); border-top: 1px solid var(--border); margin-top: 4rem; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; }
+        .footer-links h4 { margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .footer-links ul { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 0.8rem; }
+        .footer-links a { text-decoration: none; color: var(--text-muted); font-size: 0.95rem; transition: var(--transition); }
+        .footer-links a:hover { color: var(--primary); }
+
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .social-fixed { bottom: 1.5rem; right: 1.5rem; }
+        }
+    ]]></b:skin>
+
+
+
+</head>
+<body>
+    <header>
+        <div class='container'>
+            <nav>
+                <a class='logo-container' href='/'>
+                    <img alt='Antinna' class='logo-img' expr:src='data:blog.blogspotFaviconUrl'/>
+                    <span class='logo-text'>Antinna</span>
+                </a>
+                <a class='btn btn-primary' href='tel:+918607573994' style='padding: 0.5rem 1rem; font-size: 0.8rem; background: var(--primary); color: white; border-radius: 8px; text-decoration: none; font-weight: 600;'>Call Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class='main-content'>
+        <div class='container'>
+
+            <!-- Handle 404 Error View -->
+            <b:if cond='data:view.isError'>
+                <div class='error-404'>
+                    <h1>404</h1>
+                    <p>Oops! The page you are looking for at Antinna doesn't exist.</p>
+                    <a class='btn btn-primary' href='/' style='display: inline-block; margin-top: 20px; padding: 12px 30px; background: var(--primary); color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600;'>Back to Home</a>
+                </div>
+            </b:if>
+
+            <!-- Show Homepage Content -->
+            <b:if cond='data:view.isHomepage'>
+                <section class='hero'>
+                    <h1>Antinna Hardware &amp; Repair</h1>
+                    <p>Professional repair services and premium hardware solutions. We specialize in fixing agricultural machinery and providing quality tools for your needs.</p>
+                </section>
+
+                <section id='services' style='padding: 2rem 0;'>
+                    <h2 style='text-align: center; margin-bottom: 3rem; font-weight: 800;'>Our Services</h2>
+                    <div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;'>
+                        <div style='padding: 30px; background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border);'>
+                            <h3 style='color: var(--primary); margin-bottom: 1rem;'>Hardware Store</h3>
+                            <p>Explore a wide selection of durable tools, equipment, and hardware essentials for every project.</p>
+                        </div>
+                        <div style='padding: 30px; background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border);'>
+                            <h3 style='color: var(--primary); margin-bottom: 1rem;'>Equipment Repair</h3>
+                            <p>Expert maintenance and repair for agricultural machinery, power tools, and mechanical gear.</p>
+                        </div>
+                        <div style='padding: 30px; background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border);'>
+                            <h3 style='color: var(--primary); margin-bottom: 1rem;'>Technical Support</h3>
+                            <p>Need advice? Our specialists are here to help you choose the right tools and fix complex issues.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Form Section -->
+                <section class='contact-section' id='contact'>
+                    <div class='contact-card'>
+                        <h2 style='text-align: center; margin-bottom: 0.5rem; font-weight: 800;'>Get in Touch</h2>
+                        <p style='text-align: center; color: var(--text-muted); margin-bottom: 2rem;'>Have a question? Send us a message and we'll get back to you soon.</p>
+
+                        <form id='contactForm'>
+                            <div class='form-group'>
+                                <label for='name'>Full Name</label>
+                                <input class='form-control' id='name' name='name' placeholder='Your Name' required='required' type='text'/>
+                            </div>
+                            <div class='form-group'>
+                                <label for='email'>Email Address</label>
+                                <input class='form-control' id='email' name='email' placeholder='email@example.com' required='required' type='email'/>
+                            </div>
+                            <div class='form-group'>
+                                <label for='phone'>Phone Number</label>
+                                <input class='form-control' id='phone' name='phone' placeholder='+91 00000 00000' type='tel'/>
+                            </div>
+                            <div class='form-group'>
+                                <label for='message'>Message</label>
+                                <textarea class='form-control' id='message' name='message' placeholder='How can we help you?' required='required' rows='4'></textarea>
+                            </div>
+                            <button class='submit-btn' id='submitBtn' type='submit'>Send Message</button>
+                            <div class='form-status' id='formStatus'></div>
+                        </form>
+                    </div>
+                </section>
+
+                <script>
+                    const SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL'; // Replace with your deployed Web App URL
+
+                    document.getElementById('contactForm').addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        const form = e.target;
+                        const btn = document.getElementById('submitBtn');
+                        const status = document.getElementById('formStatus');
+
+                        btn.disabled = true;
+                        btn.innerText = 'Sending...';
+                        status.className = 'form-status';
+                        status.innerText = '';
+
+                        const formData = new FormData(form);
+
+                        const queryString = new URLSearchParams(formData).toString();
+
+                        fetch(SCRIPT_URL + '?' + queryString, {
+                            method: 'POST'
+                        })
+                        .then(response =&gt; response.json())
+                        .then(data =&gt; {
+                            if(data.status === 'success') {
+                                status.innerText = 'Thank you! Your message has been sent.';
+                                status.classList.add('status-success');
+                                form.reset();
+                            } else {
+                                throw new Error(data.message);
+                            }
+                        })
+                        .catch(error =&gt; {
+                            status.innerText = 'Oops! Something went wrong. Please try again.';
+                            status.classList.add('status-error');
+                            console.error('Error!', error.message);
+                        })
+                        .finally(() =&gt; {
+                            btn.disabled = false;
+                            btn.innerText = 'Send Message';
+                        });
+                    });
+                </script>
+            </b:if>
+
+            <!-- Main Content (Posts/Pages) -->
+            <b:section id='main' name='Main Content' showaddelement='yes'>
+                <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog'>
+                    <b:includable id='main'>
+                        <b:loop values='data:posts' var='post'>
+                            <div class='post-body'>
+                                <b:if cond='data:view.isSingleItem'>
+                                    <h1 style='margin-bottom: 25px; font-weight: 800; border-left: 5px solid var(--primary); padding-left: 15px;'><data:post.title/></h1>
+                                </b:if>
+                                <data:post.body/>
+                            </div>
+                        </b:loop>
+                    </b:includable>
+                </b:widget>
+            </b:section>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class='container'>
+            <div class='footer-grid'>
+                <div class='footer-brand'>
+                    <span class='logo-text'>Antinna</span>
+                    <p style='color: var(--text-muted); font-size: 0.95rem; margin-top: 1rem;'>Providing reliable hardware tools and expert machinery repair since 2024.</p>
+                </div>
+                <div class='footer-links'>
+                    <h4>Legal Information</h4>
+                    <ul>
+                        <li><a href='/p/privacy-policy.html'>Privacy Policy</a></li>
+                        <li><a href='/p/terms-conditions.html'>Terms &amp; Conditions</a></li>
+                        <li><a href='/p/refund-cancellation.html'>Refund Policy</a></li>
+                        <li><a href='/p/disclaimer.html'>Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div class='footer-links'>
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href='https://www.youtube.com/@Antinna'>YouTube Channel</a></li>
+                        <li><a href='https://www.instagram.com/antinna.yt'>Instagram</a></li>
+                        <li><a href='https://www.facebook.com/profile.php?id=100082961891641'>Facebook</a></li>
+                        <li><a href='https://play.google.com/store/apps/dev?id=7417258411166270372'>Play Store Apps</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style='text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border);'>
+                <p style='color: var(--text-muted); font-size: 0.85rem;'>&#169; 2024 Antinna.in. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Keep in Touch Widget -->
+    <div class='social-fixed'>
+        <span class='social-label'>Keep in touch</span>
+        <div class='social-icons'>
+            <!-- YouTube -->
+            <a aria-label='YouTube' class='colorful-icon' href='https://www.youtube.com/@Antinna' target='_blank'>
+                <svg height='18' id='youtube' viewBox='0 0 448 313.6' width='25.7' xmlns='http://www.w3.org/2000/svg'>
+                  <g transform='translate(-32 -99.2)'>
+                    <g stroke-width='2.404' transform='translate(314.594 428.651)scale(.41603)'>
+                      <path d='M -248.52492,-576.52087 32.650165,-414.99475 -248.52492,-253.4686 Z' fill='#fff'/>
+                      <path d='m 373.64966,-675.23131 c -11.96482,-44.86836 -47.85953,-80.76301 -92.7279,-95.7192 -83.75426,-20.93853 -421.76258,-20.93853 -421.76258,-20.93853 0,0 -338.00826,0 -421.76265,20.93853 -44.8683,14.95619 -80.76302,50.85084 -92.7279,95.7192 -23.92983,83.75432 -23.92983,260.23656 -23.92983,260.23656 0,0 0,173.49097 23.92983,260.2365 11.96488,44.86836 47.8596,80.763051 92.7279,92.727916 83.75439,23.929827 421.76265,23.929827 421.76265,23.929827 0,0 338.00832,0 421.76258,-23.929827 44.86837,-11.964865 80.76308,-47.859556 92.7279,-92.727916 23.92984,-86.74553 23.92984,-260.2365 23.92984,-260.2365 0,0 0,-176.48224 -23.92984,-260.23656 z m -622.17457,421.76266 c 0,-323.05221 0,-323.05221 0,-323.05221 281.175075,161.52611 281.175075,161.52611 281.175075,161.52611 z' fill='#fe0000'/>
+                    </g>
+                  </g>
+                </svg>
+            </a>
+            <!-- Play Store -->
+            <a aria-label='Play Store' class='colorful-icon' href='https://play.google.com/store/apps/dev?id=7417258411166270372' target='_blank'>
+                <svg height='18' id='google-play' viewBox='0 0 16 16' width='18' xml:space='preserve' xmlns='http://www.w3.org/2000/svg'>
+                    <path d='M8.32 7.68.58 15.42c-.37-.35-.57-.83-.57-1.35V1.93C.01 1.4.22.92.6.56l7.72 7.12z' fill='#2196F3'/>
+                    <path d='M15.01 8c0 .7-.38 1.32-1.01 1.67l-2.2 1.22-2.73-2.52-.75-.69 2.89-2.89L14 6.33c.63.35 1.01.97 1.01 1.67z' fill='#FFC107'/>
+                    <path d='M8.32 7.68.6.56C.7.46.83.37.96.29 1.59-.09 2.35-.1 3 .26l8.21 4.53-2.89 2.89z' fill='#4CAF50'/>
+                    <path d='M11.8 10.89 3 15.74c-.31.18-.66.26-1 .26-.36 0-.72-.09-1.04-.29a1.82 1.82 0 0 1-.38-.29l7.74-7.74.75.69 2.73 2.52z' fill='#F44336'/>
+                </svg>
+            </a>
+            <!-- Facebook -->
+            <a aria-label='Facebook' href='https://www.facebook.com/profile.php?id=100082961891641' target='_blank'>
+                <svg fill='currentColor' height='18' viewBox='0 0 24 24' width='18'><path d='M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z'/></svg>
+            </a>
+            <!-- Instagram -->
+            <a aria-label='Instagram' href='https://www.instagram.com/antinna.yt' target='_blank'>
+                <svg fill='currentColor' height='18' viewBox='0 0 24 24' width='18'><path d='M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.981 1.28.058 1.688.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4.162 4.162 0 110-8.324A4.162 4.162 0 0112 16zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z'/></svg>
+            </a>
+        </div>
+    </div>
+
+    <b:section id='system' name='System' showaddelement='no'/>
+</body>
+</html>
