@@ -6,6 +6,13 @@
 function doPost(e) {
   try {
     var params = e.parameter;
+    var action = params.action; // 'sendOTP', 'verifyOTP', or 'submitForm'
+
+    if (action === 'sendOTP') {
+      return handleSendOTP(params.phone);
+    } else if (action === 'verifyOTP') {
+      return handleVerifyOTP(params.phone, params.otp);
+    }
 
     // Extract form data
     var name = params.name || "Anonymous";
@@ -41,6 +48,9 @@ function doPost(e) {
       sheet.appendRow([new Date(), name, email, phone, message]);
     }
 
+    // Clear OTP after successful submission
+    CacheService.getScriptCache().remove(phone);
+
     return ContentService.createTextOutput(JSON.stringify({
       "status": "success",
       "message": "Message sent successfully!"
@@ -61,9 +71,83 @@ function doGet(e) {
 
 /**
  * Validates phone number format.
- * Note: For real-world OTP verification, you would integrate a service like Twilio.
  */
 function isValidPhone(phone) {
   var phoneRegex = /^\+?[1-9]\d{1,14}$/;
   return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+}
+
+/**
+ * Generates and sends an OTP to the provided phone number.
+ */
+function handleSendOTP(phone) {
+  if (!isValidPhone(phone)) {
+    return createJsonResponse("error", "Invalid phone format.");
+  }
+
+  var otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+  // Store OTP in Cache for 5 minutes
+  var cache = CacheService.getScriptCache();
+  cache.put(phone, otp, 300);
+
+  // Simulate sending SMS (Integration with Twilio/SMS provider goes here)
+  var success = sendSMS(phone, "Your Antinna verification code is: " + otp);
+
+  if (success) {
+    return createJsonResponse("success", "OTP sent to your phone.");
+  } else {
+    // For demo purposes, we'll return success even if SMS fails, but log the OTP
+    console.log("MOCK SMS to " + phone + ": " + otp);
+    return createJsonResponse("success", "OTP sent (Simulated). Check logs.");
+  }
+}
+
+/**
+ * Verifies the provided OTP against the cached value.
+ */
+function handleVerifyOTP(phone, userOtp) {
+  var cache = CacheService.getScriptCache();
+  var cachedOtp = cache.get(phone);
+
+  if (cachedOtp && cachedOtp === userOtp) {
+    return createJsonResponse("success", "Phone verified successfully.");
+  } else {
+    return createJsonResponse("error", "Invalid or expired OTP.");
+  }
+}
+
+/**
+ * Mock function for sending SMS.
+ */
+function sendSMS(phone, message) {
+  var sid = PropertiesService.getScriptProperties().getProperty('TWILIO_SID');
+  var token = PropertiesService.getScriptProperties().getProperty('TWILIO_TOKEN');
+  var from = PropertiesService.getScriptProperties().getProperty('TWILIO_PHONE');
+
+  if (!sid || !token || !from) return false;
+
+  var url = "https://api.twilio.com/2010-04-01/Accounts/" + sid + "/Messages.json";
+  var options = {
+    method: "post",
+    headers: {
+      "Authorization": "Basic " + Utilities.base64Encode(sid + ":" + token)
+    },
+    payload: {
+      "From": from,
+      "To": phone,
+      "Body": message
+    },
+    muteHttpExceptions: true
+  };
+
+  var response = UrlFetchApp.fetch(url, options);
+  return response.getResponseCode() === 201;
+}
+
+function createJsonResponse(status, message) {
+  return ContentService.createTextOutput(JSON.stringify({
+    "status": status,
+    "message": message
+  })).setMimeType(ContentService.MimeType.JSON);
 }

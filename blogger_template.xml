@@ -448,9 +448,19 @@
                                 <label for='email'>Email Address</label>
                                 <input class='form-control' id='email' name='email' placeholder='email@example.com' required='required' type='email'/>
                             </div>
-                            <div class='form-group'>
+                            <div class='form-group' id='phoneGroup'>
                                 <label for='phone'>Phone Number</label>
-                                <input class='form-control' id='phone' name='phone' pattern='^\+?[1-9]\d{1,14}$' placeholder='+91 00000 00000' title='Please enter a valid phone number with country code (e.g. +91...)' type='tel'/>
+                                <div style='display: flex; gap: 10px;'>
+                                    <input class='form-control' id='phone' name='phone' pattern='^\+?[1-9]\d{1,14}$' placeholder='+91 00000 00000' title='Please enter a valid phone number with country code (e.g. +91...)' type='tel'/>
+                                    <button class='btn btn-primary' id='sendOTPBtn' style='white-space: nowrap; padding: 0 15px; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer;' type='button'>Send OTP</button>
+                                </div>
+                            </div>
+                            <div class='form-group' id='otpGroup' style='display: none;'>
+                                <label for='otp'>Verification Code</label>
+                                <div style='display: flex; gap: 10px;'>
+                                    <input class='form-control' id='otp' name='otp' placeholder='6-digit code' type='text'/>
+                                    <button class='btn btn-primary' id='verifyOTPBtn' style='white-space: nowrap; padding: 0 15px; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer;' type='button'>Verify</button>
+                                </div>
                             </div>
                             <div class='form-group'>
                                 <label for='message'>Message</label>
@@ -464,31 +474,98 @@
 
                 <script>
                     const SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL'; // Replace with your deployed Web App URL
+                    let isPhoneVerified = false;
 
-                    document.getElementById('contactForm').addEventListener('submit', function(e) {
-                        e.preventDefault();
-                        const form = e.target;
-                        const btn = document.getElementById('submitBtn');
-                        const status = document.getElementById('formStatus');
+                    const form = document.getElementById('contactForm');
+                    const phoneInput = document.getElementById('phone');
+                    const otpInput = document.getElementById('otp');
+                    const sendOTPBtn = document.getElementById('sendOTPBtn');
+                    const verifyOTPBtn = document.getElementById('verifyOTPBtn');
+                    const otpGroup = document.getElementById('otpGroup');
+                    const status = document.getElementById('formStatus');
+                    const submitBtn = document.getElementById('submitBtn');
 
-                        btn.disabled = true;
-                        btn.innerText = 'Sending...';
-                        status.className = 'form-status';
-                        status.innerText = '';
+                    function showStatus(msg, type) {
+                        status.innerText = msg;
+                        status.className = 'form-status ' + (type === 'success' ? 'status-success' : 'status-error');
+                    }
 
-                        const formData = new FormData(form);
-
-                        // Client-side validation for phone
-                        const phone = formData.get('phone');
-                        if (phone && !/^\+?[1-9]\d{1,14}$/.test(phone.replace(/[\s\-\(\)]/g, ''))) {
-                            status.innerText = 'Please enter a valid phone number including country code.';
-                            status.classList.add('status-error');
-                            btn.disabled = false;
-                            btn.innerText = 'Send Message';
+                    sendOTPBtn.addEventListener('click', function() {
+                        const phone = phoneInput.value;
+                        if (!/^\+?[1-9]\d{1,14}$/.test(phone.replace(/[\s\-\(\)]/g, ''))) {
+                            showStatus('Enter valid phone with country code.', 'error');
                             return;
                         }
 
-                        const queryString = new URLSearchParams(formData).toString();
+                        sendOTPBtn.disabled = true;
+                        sendOTPBtn.innerText = 'Sending...';
+
+                        fetch(`${SCRIPT_URL}?action=sendOTP&amp;phone=${encodeURIComponent(phone)}`, { method: 'POST' })
+                            .then(res =&gt; res.json())
+                            .then(data =&gt; {
+                                if (data.status === 'success') {
+                                    otpGroup.style.display = 'block';
+                                    showStatus('OTP sent. Please check your phone.', 'success');
+                                } else {
+                                    showStatus(data.message, 'error');
+                                    sendOTPBtn.disabled = false;
+                                }
+                            })
+                            .catch(() =&gt; {
+                                showStatus('Error sending OTP.', 'error');
+                                sendOTPBtn.disabled = false;
+                            })
+                            .finally(() =&gt; {
+                                sendOTPBtn.innerText = 'Resend';
+                                setTimeout(() =&gt; sendOTPBtn.disabled = false, 30000);
+                            });
+                    });
+
+                    verifyOTPBtn.addEventListener('click', function() {
+                        const phone = phoneInput.value;
+                        const otp = otpInput.value;
+
+                        verifyOTPBtn.disabled = true;
+                        verifyOTPBtn.innerText = '...';
+
+                        fetch(`${SCRIPT_URL}?action=verifyOTP&amp;phone=${encodeURIComponent(phone)}&amp;otp=${encodeURIComponent(otp)}`, { method: 'POST' })
+                            .then(res =&gt; res.json())
+                            .then(data =&gt; {
+                                if (data.status === 'success') {
+                                    isPhoneVerified = true;
+                                    phoneInput.disabled = true;
+                                    otpInput.disabled = true;
+                                    verifyOTPBtn.style.display = 'none';
+                                    sendOTPBtn.style.display = 'none';
+                                    showStatus('Phone verified!', 'success');
+                                } else {
+                                    showStatus(data.message, 'error');
+                                    verifyOTPBtn.disabled = false;
+                                }
+                            })
+                            .catch(() =&gt; {
+                                showStatus('Error verifying OTP.', 'error');
+                                verifyOTPBtn.disabled = false;
+                            })
+                            .finally(() =&gt; {
+                                verifyOTPBtn.innerText = 'Verify';
+                            });
+                    });
+
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault();
+
+                        if (!isPhoneVerified) {
+                            showStatus('Please verify your phone number first.', 'error');
+                            return;
+                        }
+
+                        submitBtn.disabled = true;
+                        submitBtn.innerText = 'Sending...';
+
+                        const formData = new FormData(form);
+                        // Add action param for final submission
+                        const queryString = new URLSearchParams(formData).toString() + '&amp;action=submitForm';
 
                         fetch(SCRIPT_URL + '?' + queryString, {
                             method: 'POST'
@@ -496,21 +573,26 @@
                         .then(response =&gt; response.json())
                         .then(data =&gt; {
                             if(data.status === 'success') {
-                                status.innerText = 'Thank you! Your message has been sent.';
-                                status.classList.add('status-success');
+                                showStatus('Thank you! Your message has been sent.', 'success');
                                 form.reset();
+                                otpGroup.style.display = 'none';
+                                isPhoneVerified = false;
+                                phoneInput.disabled = false;
+                                otpInput.disabled = false;
+                                verifyOTPBtn.style.display = 'block';
+                                sendOTPBtn.style.display = 'block';
+                                sendOTPBtn.innerText = 'Send OTP';
                             } else {
                                 throw new Error(data.message);
                             }
                         })
                         .catch(error =&gt; {
-                            status.innerText = 'Oops! Something went wrong. Please try again.';
-                            status.classList.add('status-error');
+                            showStatus('Oops! Something went wrong. Please try again.', 'error');
                             console.error('Error!', error.message);
                         })
                         .finally(() =&gt; {
-                            btn.disabled = false;
-                            btn.innerText = 'Send Message';
+                            submitBtn.disabled = false;
+                            submitBtn.innerText = 'Send Message';
                         });
                     });
                 </script>
